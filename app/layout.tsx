@@ -16,12 +16,39 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Blogs Shada",
   description: "Catatan milik Shada",
+    keywords: [
+    "blog pribadi",
+    "personal blog",
+    "Bintang Shada",
+    "Bintang Shada Kawibya Putra",
+    "mahasiswa informatika",
+    "UPN Veteran Yogyakarta", 
+    "software engineering",
+    "programming blog",
+    "teknologi",
+    "coding",
+    "web development",
+    "student blog",
+    "portfolio",
+    "SMKN 1 Bantul",
+    "software engineer",
+    "blog mahasiswa",
+    "next js blog",
+    "react blog",
+    "typescript",
+    "javascript",
+    "web developer",
+    "blog indonesia"
+  ],
   icons: {
     icon: '/note.svg',
   },
   verification: {
     google: 'U7eRSN3suk2UAh-OM1fM874CeZoWbvbNTT06NiOdC2Y',
-  }
+  },
+  authors: [{ name: 'Bintang Shada Kawibya Putra' }],
+  creator: 'Bintang Shada Kawibya Putra',
+  publisher: 'Bintang Shada Kawibya Putra',
 };
 
 export default function RootLayout({
