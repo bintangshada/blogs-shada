@@ -33,7 +33,7 @@ export default function RootLayout({
       >
         <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen min-w-screen">
           <main className="flex flex-col row-start-2  sm:items-start">
-            <div className="container lg:w-4xl w-100">
+            <div className="container lg:w-4xl w-screen">
               <p className="p-4"><Link href="/">Home</Link> | <Link href="/about">About</Link> | <Link href="/articles">Articles</Link> | <Link href="/contact">Contact</Link> </p>
               <div className="px-4">
                 {children}
