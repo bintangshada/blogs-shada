@@ -19,7 +19,7 @@ export default async function ArticlesPage(){
                 {blogs && blogs.length > 0 ? blogs.map((blog) => (
                     <li key={blog.id}>
                         <Link href={`/articles/${blog.slug}`}>
-                            <h3 className="inline">{blog.title} - </h3>
+                            <h2 className="inline">{blog.title} - </h2>
                             <p className="inline text-gray-500">{blog.createdAt.toLocaleDateString()}</p>
                         </Link>        
                     </li>

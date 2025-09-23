@@ -25,7 +25,7 @@ export default async function Home() {
               {blogs && blogs.length > 0 ? blogs.map((blog) => (
                 <li key={blog.id}>
                   <Link href={`/articles/${blog.slug}`} className="hover:underline">
-                    <h3 className="inline">{blog.title} - </h3>
+                    <h2 className="inline">{blog.title} - </h2>
                     <p className="inline text-gray-500">{blog.createdAt.toLocaleDateString()}</p>
                   </Link>
                 </li>
