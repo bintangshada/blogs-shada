@@ -20,7 +20,7 @@ export default async function ArticlesPage({ params }: Props){
     return (
         <div className="m-8 max-w-200">
             <h1 className="text-2xl flex justify-center my-4">{article?.title}</h1>
-            <p className="text-xl my-4">{article?.content}</p>
+            <pre className=" my-4">{article?.content}</pre>
             <p className="text-gray-500">{article?.createdAt.toDateString()}</p>
         </div>
     )
