@@ -31,7 +31,7 @@ export default function RootLayout({
         <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen">
           <main className="flex flex-col  row-start-2 items-center sm:items-start">
             <div className="container min-w-200">
-              <p><Link href="/">Home</Link> | <Link href="/about">About</Link> | <Link href="/articles">Articles</Link> </p>
+              <p><Link href="/">Home</Link> | <Link href="/about">About</Link> | <Link href="/articles">Articles</Link> | <Link href="/contact">Contact</Link> </p>
               {children}
             </div>
           </main>

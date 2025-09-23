@@ -1,9 +1,27 @@
+import prisma from "@/app/lib/prisma";
+
 type Props = {
     params: { slug: string };
 }
 
-export default function ArticlesPage({ params }: Props){
+async function getArticle({ params }: Props) {
+    const {slug} = await params;
+    const blogs = await prisma.article.findUnique({
+        where: { slug }
+    });
     return (
-        <h1>Artikel = {params.slug}</h1>
+        blogs
+    );
+}
+
+export default async function ArticlesPage({ params }: Props){
+    const article = await getArticle({ params });
+
+    return (
+        <div className="m-8">
+            <h1 className="text-3xl flex justify-center my-4">{article?.title}</h1>
+            <p className="text-xl my-4">{article?.content}</p>
+            <p className="text-gray-500">{article?.createdAt.toDateString()}</p>
+        </div>
     )
 }
