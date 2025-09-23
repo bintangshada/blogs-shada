@@ -13,7 +13,7 @@ async function getArticles() {
 export default async function ArticlesPage(){
     const blogs = await getArticles();
     return(
-        <div>
+        <div className="max-w-200">
             <h1 className="flex justify-center">List Artikel</h1>
             <ul className="list-inside list-disc">
                 {blogs && blogs.length > 0 ? blogs.map((blog) => (

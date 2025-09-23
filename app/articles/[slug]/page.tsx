@@ -18,7 +18,7 @@ export default async function ArticlesPage({ params }: Props){
     const article = await getArticle({ params });
 
     return (
-        <div className="m-8">
+        <div className="m-8 max-w-200">
             <h1 className="text-3xl flex justify-center my-4">{article?.title}</h1>
             <p className="text-xl my-4">{article?.content}</p>
             <p className="text-gray-500">{article?.createdAt.toDateString()}</p>
