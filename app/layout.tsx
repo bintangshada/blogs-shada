@@ -18,6 +18,9 @@ export const metadata: Metadata = {
   description: "Catatan milik Shada",
   icons: {
     icon: '/note.svg',
+  },
+  verification: {
+    google: 'U7eRSN3suk2UAh-OM1fM874CeZoWbvbNTT06NiOdC2Y',
   }
 };
 
