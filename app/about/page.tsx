@@ -1,4 +1,4 @@
-import Image from "next/image"
+import Link from "next/link"
 
 export default function AboutPage(){
     return (
@@ -9,10 +9,10 @@ export default function AboutPage(){
             <h2 className="mb-4">Info</h2>
             <ul className="list-inside list-disc">
                 <li>
-                    <a href="https://www.linkedin.com/in/bintang-shada-kawibya-putra/"><p className="inline">Linkedin : Bintang Shada Kawibya Putra</p></a>
+                    <Link href="https://www.linkedin.com/in/bintang-shada-kawibya-putra/" target="_blank"><p className="inline">Linkedin : Bintang Shada Kawibya Putra</p></Link>
                 </li>
                 <li>
-                    <a href="https://github.com/bintangshada/"><p className="inline">Github : bintangshada</p></a>
+                    <Link href="https://github.com/bintangshada/" target="_blank"><p className="inline">Github : bintangshada</p></Link>
                 </li>
             </ul>
         </div>
