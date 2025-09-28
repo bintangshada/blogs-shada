@@ -1,13 +1,18 @@
 import Link from "next/link";
-import prisma from "./lib/prisma";
+
+interface Blogs {
+  id: string;
+  slug: string;
+  title: string;
+  createdAt: Date;
+}
 
 async function getArticles() {
-  const blogs = await prisma.article.findMany({
-    orderBy: {
-      createdAt: 'desc'
-    }
-  });
-  return blogs;
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/articles`, {
+      cache: "no-store"
+    });
+    const blogs = await res.json();
+    return blogs;
 }
 
 export default async function Home() {
@@ -22,14 +27,14 @@ export default async function Home() {
           <div className="mt-8">
             <h1 className="my-4 text-xl flex justify-center">Blogs</h1>
             <ul className="list-inside list-disc space-y-2 ml-4">
-              {blogs && blogs.length > 0 ? blogs.map((blog) => (
+              {blogs.map((blog: Blogs) => (
                 <li key={blog.id}>
                   <Link href={`/articles/${blog.slug}`} className="hover:underline">
                     <h2 className="inline">{blog.title} - </h2>
-                    <p className="inline text-gray-500">{blog.createdAt.toLocaleDateString()}</p>
+                    <p className="inline text-gray-500">{new Date(blog.createdAt).toLocaleDateString()}</p>
                   </Link>
                 </li>
-              )) : <li>No blogs found</li>}
+              ))}
             </ul>
           </div>
           {/* <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">

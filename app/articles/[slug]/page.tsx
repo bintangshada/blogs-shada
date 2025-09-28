@@ -22,8 +22,8 @@ export default async function ArticlesPage({ params }: Props){
     const article = await getArticle({ params });
 
     return (
-        <div className="m-8 max-w-200">
-            <h1 className="text-2xl flex justify-center my-4">{article?.title}</h1>
+        <div className="max-w-200 overflow-hidden">
+            <pre className="text-2xl flex justify-center">{article?.title}</pre>
             <pre className="whitespace-pre-wrap break-words overflow-hidden p-4 rounded-lg text-sm leading-relaxed">
                 {article?.content}
             </pre>
