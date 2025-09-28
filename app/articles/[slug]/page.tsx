@@ -1,4 +1,5 @@
 import prisma from "@/app/lib/prisma";
+import { notFound } from "next/navigation";
 
 type Props = {
     params: { slug: string };
@@ -9,6 +10,9 @@ async function getArticle({ params }: Props) {
     const blogs = await prisma.article.findUnique({
         where: { slug }
     });
+    if(!blogs){
+        return notFound();
+    }
     return (
         blogs
     );
