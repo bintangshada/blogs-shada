@@ -21,6 +21,6 @@ export async function POST(req: Request){
 
     return NextResponse.json(
         {token, user: {id: user.id, email: user.email}},
-        {status: 400}
+        {status: 200}
     )
 }
