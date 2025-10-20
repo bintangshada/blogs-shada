@@ -37,9 +37,9 @@ export const LoginForm = () => {
       } else {
         setError("invalid email or password");
       }
-    } catch (error: any) {
+    } catch (err: unknown) {
       setLoading(false);
-      setError(error);
+      setError(err instanceof Error ? err.message : String(err));
     }
   };
 

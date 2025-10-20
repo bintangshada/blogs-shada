@@ -2,7 +2,6 @@ import { authOptions } from "@/app/lib/auth";
 import prisma from "@/app/lib/prisma";
 import { getServerSession } from "next-auth";
 import Link from "next/link";
-import { redirect } from "next/navigation";
 import { LogoutButton } from "@/app/components/LogoutButton";
 
 async function getArticles() {

@@ -2,12 +2,11 @@ import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import { compare } from "bcryptjs";
 import type { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
-import GitHubProvider from "next-auth/providers/github";
-import GoogleProvider from "next-auth/providers/google";
 import prisma from "./prisma";
+import type { Adapter } from "next-auth/adapters";
 
 export const authOptions: NextAuthOptions = {
-    adapter: PrismaAdapter(prisma as any),
+    adapter: PrismaAdapter(prisma) as unknown as Adapter,
     pages: {
         signIn: "/login",
     },
@@ -52,22 +51,23 @@ export const authOptions: NextAuthOptions = {
     ],
     callbacks: {
         session: ({ session, token }) => {
+            const t = token as Record<string, unknown>;
             return {
                 ...session,
                 user: {
                     ...session.user,
-                    id: token.id,
-                    randomKey: token.randomKey,
+                    id: typeof t.id === "string" ? t.id : undefined,
+                    randomKey: typeof t.randomKey === "string" ? t.randomKey : undefined,
                 },
             };
         },
         jwt: ({ token, user }) => {
             if (user) {
-                const u = user as unknown as any;
+                const u = user as unknown as Record<string, unknown>;
                 return {
                     ...token,
-                    id: u.id,
-                    randomKey: u.randomKey,
+                    id: typeof u.id === "string" ? u.id : undefined,
+                    randomKey: typeof u.randomKey === "string" ? u.randomKey : undefined,
                 };
             }
             return token;

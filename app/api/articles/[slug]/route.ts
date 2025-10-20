@@ -2,6 +2,7 @@ import prisma from "@/app/lib/prisma";
 import { NextRequest, NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/app/lib/auth";
+import { Prisma } from "@prisma/client";
 
 export async function GET(
     request: NextRequest,
@@ -12,7 +13,7 @@ export async function GET(
         const article = await prisma.article.findUnique({ where: { slug } });
         if (!article) return NextResponse.json({ error: "Not found" }, { status: 404 });
         return NextResponse.json(article);
-    } catch (e) {
+    } catch (e: unknown) {
         console.error(e);
         return NextResponse.json({ error: "Server error" }, { status: 500 });
     }
@@ -37,8 +38,10 @@ export async function PUT(
             data: { title, content },
         });
         return NextResponse.json(updated);
-    } catch (e: any) {
-        if (e.code === "P2025") return NextResponse.json({ error: "Not found" }, { status: 404 });
+    } catch (e: unknown) {
+        if (e instanceof Prisma.PrismaClientKnownRequestError && e.code === "P2025") {
+            return NextResponse.json({ error: "Not found" }, { status: 404 });
+        }
         console.error(e);
         return NextResponse.json({ error: "Server error" }, { status: 500 });
     }
@@ -55,8 +58,10 @@ export async function DELETE(
         const { slug } = await params;
         await prisma.article.delete({ where: { slug } });
         return NextResponse.json({ ok: true });
-    } catch (e: any) {
-        if (e.code === "P2025") return NextResponse.json({ error: "Not found" }, { status: 404 });
+    } catch (e: unknown) {
+        if (e instanceof Prisma.PrismaClientKnownRequestError && e.code === "P2025") {
+            return NextResponse.json({ error: "Not found" }, { status: 404 });
+        }
         console.error(e);
         return NextResponse.json({ error: "Server error" }, { status: 500 });
     }
