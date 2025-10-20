@@ -4,12 +4,12 @@ const prisma = new PrismaClient();
 
 async function main(){
     try {
-        await prisma.article.createMany({
-            data: [
-                { title: "Artikel Pertama", slug: "artikel-pertama", content: "Ini isi artikel pertama" },
-                { title: "Artikel Kedua", slug: "artikel-kedua", content: "Ini isi artikel kedua" }
-            ]
-        })
+        // await prisma.article.createMany({
+        //     data: [
+        //         { title: "Artikel Pertama", slug: "artikel-pertama", content: "Ini isi artikel pertama" },
+        //         { title: "Artikel Kedua", slug: "artikel-kedua", content: "Ini isi artikel kedua" }
+        //     ]
+        // })
         if (!process.env.PASSWORD) {
             throw new Error("password is not defined");
         }
