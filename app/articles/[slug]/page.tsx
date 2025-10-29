@@ -23,7 +23,7 @@ export default async function ArticlesPage({ params }: Props){
 
     return (
         <div className="max-w-200 overflow-hidden">
-            <pre className="text-2xl flex justify-center">{article?.title}</pre>
+            <pre className="text-2xl flex justify-center whitespace-pre-wrap text-center">{article?.title}</pre>
             <pre className="whitespace-pre-wrap break-words overflow-hidden p-4 rounded-lg text-sm leading-relaxed">
                 {article?.content}
             </pre>
