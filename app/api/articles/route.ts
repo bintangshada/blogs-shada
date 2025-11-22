@@ -19,7 +19,7 @@ export async function POST(req: Request) {
         const session = await getServerSession(authOptions);
         if (!session) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
-        const { title, content } = await req.json();
+        const { title, content, imageUrl } = await req.json();
         if (!title || !content) {
             return NextResponse.json({ error: "title and content are required" }, { status: 400 });
         }
@@ -31,7 +31,7 @@ export async function POST(req: Request) {
             slug = `${baseSlug}-${i++}`;
         }
 
-        const article = await prisma.article.create({ data: { title, content, slug } });
+        const article = await prisma.article.create({ data: { title, content, slug, imageUrl } });
         return NextResponse.json(article, { status: 201 });
     } catch (e) {
         console.error(e);

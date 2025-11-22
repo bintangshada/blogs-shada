@@ -1,4 +1,5 @@
 import prisma from "@/app/lib/prisma";
+import Image from "next/image";
 import { notFound } from "next/navigation";
 
 type Props = {
@@ -22,12 +23,24 @@ export default async function ArticlesPage({ params }: Props){
     const article = await getArticle({ params });
 
     return (
-        <div className="max-w-200 overflow-hidden">
-            <pre className="text-2xl flex justify-center whitespace-pre-wrap text-center">{article?.title}</pre>
-            <pre className="whitespace-pre-wrap break-words overflow-hidden p-4 rounded-lg text-sm leading-relaxed">
-                {article?.content}
-            </pre>
-            <p className="text-gray-500">{article?.createdAt.toDateString()}</p>
-        </div>
-    )
+      <div className="max-w-200 overflow-hidden">
+        {article.imageUrl && (
+          <div className="min-w-full flex justify-center">
+            <Image
+              src={article.imageUrl}
+              alt={article.title}
+              width={400}
+              height={0}
+            />
+          </div>
+        )}
+        <pre className="text-2xl flex justify-center whitespace-pre-wrap text-center">
+          {article?.title}
+        </pre>
+        <pre className="whitespace-pre-wrap break-words overflow-hidden p-4 rounded-lg text-sm leading-relaxed">
+          {article?.content}
+        </pre>
+        <p className="text-gray-500">{article?.createdAt.toDateString()}</p>
+      </div>
+    );
 }
