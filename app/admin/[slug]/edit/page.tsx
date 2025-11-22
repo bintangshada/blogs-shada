@@ -45,7 +45,7 @@ export default function EditArticlePage() {
       const filepath = `articles/${fileName}`;
 
       const { error: uploadError } = await supabase.storage
-        .from("article-images")
+        .from("article-image")
         .upload(filepath, imageFile);
 
       if (uploadError) {
@@ -56,7 +56,7 @@ export default function EditArticlePage() {
       }
 
       const { data } = supabase.storage
-        .from("article-images")
+        .from("article-image")
         .getPublicUrl(filepath);
 
       imageUrl = data.publicUrl;
