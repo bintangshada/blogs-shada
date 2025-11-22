@@ -28,14 +28,14 @@ export async function PUT(
         if (!session) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
         const { slug } = await params;
-        const { title, content } = await request.json();
+        const { title, content, imageUrl } = await request.json();
         if (!title || !content) {
             return NextResponse.json({ error: "title and content are required" }, { status: 400 });
         }
 
         const updated = await prisma.article.update({
             where: { slug },
-            data: { title, content },
+            data: { title, content, imageUrl },
         });
         return NextResponse.json(updated);
     } catch (e: unknown) {
