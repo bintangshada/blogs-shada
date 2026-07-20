@@ -1,0 +1,23 @@
+name: Supabase Keep Alive
+
+on:
+  schedule:
+    - cron: '0 0 */3 * *'
+  workflow_dispatch:
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping Keep-Alive Endpoint
+        run: |
+          # Use the site URL. You can customize this or add it as a secret
+          URL="${{ secrets.SITE_URL }}"
+          if [ -z "$URL" ]; then
+            # Fallback if secret is not set (edit with your production domain)
+            URL="https://blogs-shada.vercel.app"
+          fi
+          
+          echo "Pinging $URL/api/cron/keep-alive"
+          curl -f -X GET "$URL/api/cron/keep-alive" \
+            -H "Authorization: Bearer ${{ secrets.CRON_SECRET }}" || echo "Failed to ping, but attempt made."

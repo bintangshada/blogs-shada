@@ -1,3 +1,4 @@
+import prisma from "@/app/lib/prisma";
 import Link from "next/link";
 
 interface Blogs {
@@ -8,11 +9,9 @@ interface Blogs {
 }
 
 async function getArticles() {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/articles`, {
-      cache: "no-store"
+    return await prisma.article.findMany({
+        orderBy: { createdAt: "desc" }
     });
-    const blogs = await res.json();
-    return blogs;
 }
 
 export default async function Home() {

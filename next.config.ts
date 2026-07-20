@@ -3,7 +3,14 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   /* config options here */
   images: {
-    domains: ['fvxaupvdrpfjetehesbe.supabase.co']
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'wtjwmgvqwnnxrglzdbnr.supabase.co',
+        port: '',
+        pathname: '/storage/v1/object/public/**',
+      },
+    ],
   }
 };
 
