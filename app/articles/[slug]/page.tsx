@@ -3,7 +3,7 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 
 type Props = {
-    params: { slug: string };
+    params: Promise<{ slug: string }>;
 }
 
 async function getArticle({ params }: Props) {

@@ -21,10 +21,11 @@ export async function GET(request: Request) {
       timestamp: new Date().toISOString(),
       count: articleCount,
     });
-  } catch (error: any) {
+  } catch (error) {
     console.error("Keep-alive cron error:", error);
+    const errorMessage = error instanceof Error ? error.message : String(error);
     return NextResponse.json(
-      { success: false, error: error.message },
+      { success: false, error: errorMessage },
       { status: 500 }
     );
   }

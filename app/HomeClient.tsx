@@ -149,7 +149,7 @@ export default function HomeClient({ blogs }: HomeClientProps) {
       );
     }
 
-    let observerInstance = Observer.create({
+    const observerInstance = Observer.create({
       target: window,
       type: "pointer",
       onMove: (self) => {
